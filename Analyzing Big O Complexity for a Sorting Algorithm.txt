@@ -1,0 +1,63 @@
+Case Study: Analyzing Big O Complexity for a Sorting Algorithm
+Objective: The objective of this case study is to analyze the Big O complexity of a given sorting algorithm and understand its efficiency concerning different input sizes.
+
+Problem Statement: Consider a sorting algorithm that arranges an array of integers in ascending order. The challenge is to analyze the Big O complexity of the algorithm and assess its efficiency in various scenarios.
+
+def simple_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+Task 1: Identifying Key Operations
+Analyze the provided algorithm and identify the key operations it performs.
+
+Outer loop (for i in range(n)):
+The loop runs n times, where n is the length of the array.
+
+Inner loop ( for j in range(0, n-i-1)):
+for each iteration of i the inner loop runs n - i -1 times
+this is to compare the elements next to each other and then moving them to the end of the array
+
+comparing (if arr[j] > arr[j+1]):
+checks to see if the current element is greater
+
+swap (arr[j], arr[j+1] = arr[j+1], arr[j]):
+this swaps the elements if they are out of order.
+
+This algorithm compares and swaps elements.
+
+
+Task 2: Calculating Big O Complexity
+Apply the principles of Big O notation to express how the algorithm's runtime grows concerning the size of the input
+
+In the best case scenario this algorithm is an O(n) but on average this algorithm does not take advantage of this array being sorted already making it O(n^2)
+
+As the size of the input grows the runtime will also grow. It is a simple but very inefficient way to sort.
+ 
+
+Task 3: Efficiency Analysis:
+
+This algorithm os inefficientfor large databases due to the fact that it has the worst time complexity of O(n^2).
+
+It does unnecessary comparisons even if the array is already semi-sorted.
+
+def simple_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+def optimized_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                swapped = True
+        if not swapped:
+            break
+
+The optimization that I put takes advantage of the already sorted array. It is called a swap flag insuring that there are no wasted comparisons and making the best time complexity O(n.)

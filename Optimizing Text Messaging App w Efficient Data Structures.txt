@@ -1,0 +1,177 @@
+Task 1: Message Storage and Retrieval:
+
+Research and analyze data structures for efficient message storage and retrieval.
+Consider factors such as message ordering, search complexity, and storage overhead.
+Evaluate data structures like arrays, linked lists, hash tables, and trees for storing and retrieving messages.
+
+
+TASK 1
+
+arrays: 
+
+Pros--
+With arrays the pros are that they are very simple to use. 
+You can access specific messages if you know the index.
+There are many built-in methods that allow for manipulation.
+
+Cons--
+As the size increases arrays can become memory intensive, which seems to be one of the factors impacting performance in this case study.
+That along with the fact that deletion and insertion can be quite slow make this not the most optimal way of storing messages.
+
+Final thoughts: This doesn't seem to address some of the major issues that seem to affcect the app when it comes to scalability.
+
+linked lists:
+
+Pros--
+Linked lists are great for insertion and deletion.
+They can grow and shrink dynamically which is something to consider in this case study.
+They are also better with memory as compared to arrays because they do not require contiguous memory allocation.
+
+Cons--
+They are slower at accessing due to the fact that you need to start travesing the list from the beginning till you reach target.
+They use increased memory because they need to store the pointer to the next node. 
+They can be more complex to implement. 
+
+Final thoughts: This solution falls short in a very important aspect which is the retrieval of the messages.
+
+hash tables: 
+
+Pros--
+They have fast lookups which is a huge benefit in this case study.
+Efficient insertion, and flexible keys.
+
+Cons--
+They require additional memory to store hash the hash function and handle collisions. This can become an issue with scalability.
+There is no inherant order which could require additional sorting implementation.
+Although collisions are hanldled automatically in python this can still impact performance.
+Not suitable for all cases.
+
+Final thoughts: There is definitely potential when it comes to using a hash table for the app, such as the fast lookups. The issue that can arise is that it seems there could be issues with scalability.
+
+
+trees:
+
+Pros--
+Trees can be more efficient when it comes to searching if you need to search for the messages based on specific criteria
+Trees represent hierachal relationships which can become useful if organizing using hierachal structures. 
+Depending on the type of tree used they can be efficient when inserting or deleting making them beneficial for dynamic message storing.
+They are flexible and can be customized.
+
+Cons--
+Trees can be complicated to implement and manage when compared to dictionaries or lists(arrays).
+Trees require additional memory to store the structure of the tree, such as the pointers or the references between nodes.
+Trees are definitely not ideal for all situations especially if you are performing very simple operations and or you have a small dataset.
+They can become unbalanced, which would require the implementation of balancing mechanisms in order to keep up with performance.
+
+Final thought: This is another solution that I see a lot of potential gain from due to the fact that it seems to hit all the concerns for this case study. The potential problems do arise as it pertains to memory.
+
+
+Task 2: Real-Time Updates:
+
+Explore data structures suitable for real-time updates, ensuring that new messages are promptly delivered to users.
+Investigate techniques such as polling, long-polling, and websockets for real-time communication.
+Analyze the pros and cons of each approach in terms of scalability, latency, and resource consumption.
+
+
+
+TASK 2:
+
+Polling:
+Pros--
+One of the main benefits for polling is that it is very simple to implement.
+It also works accross different platforms and browsers without requiring special protocols and configurations.
+You can also control the frequency at which it checks for updates.
+The requests are independent which means less memory usage.
+
+Cons--
+It is inefficient becuase it involves sending frequent requests to the server even when there is no data. This can lead to increased network traffic, unnecessary server load, and wasted resources.
+It also can lead to latency because upadtes are only received during the polling interval.
+Most likely this would not be a good choice for real-time communication.
+
+
+Long polling:
+Pros--
+Long polling reduces the number of requests and bandwidth usage because requests are only sent when new data is added.
+It also has low latency because the server responds immediately when new data is avaialable.
+Long polling also great for scalability, however this is also in comparison to short-polling.
+
+
+Cons--
+--quick disclaimer--
+The cons for long polling appear to be similar to the cons that short polling suffers from becuase this is in comparison to websockets.
+
+One con is that long polling makes it harder to receive messages in order.
+It is more complex that short polling to implement.
+It overall seems to due everything websockets just not as well.
+
+Web sockets
+
+Pros--
+They have low latency!
+They are bidirectional which enables two-way communication between a client to a server which allows for informaiton to be exchanged at any time.
+They are efficient when compared to long polling because they don't require repetitive HTTP headers and handshakes, lowering bandwidth usage and server load.
+They are data flexible and can transmit binary data and UTF-8, so apps can send plain text, image and video.
+They are secure, and if a message is not received the receiver will wait for the browser to send again.
+
+Cons--
+They may not be supported on older browser enviornments.
+They can be blocked by firewalls and proxy servers especially in corporate settings.
+They do not automatically reconnect when the connection is lost, so you may need to write your own logic for reconnection.
+They lack security if not set up properly, and they do seem to be on the more complex side of things.
+They also do not guarantee that the message will be delivered exactly once.
+They can also be resource intensive.
+
+Overall these protcols have their issue.
+These are some key high-lights.
+Short polling is simple but can suffer from the inability to handle loads and lacks efficiency.
+Long polling addresses most of the issues that short polling cannot address but is also more complicated.
+Websockets seem to be better than polling in a lot of aread but it may not be supported, and can suffer more problems if not properly implemente; Not to mention that is seems to be even more complex.
+
+Task 3: Conversation List Management:
+
+Evaluate data structures for managing the list of conversations, optimizing the display and retrieval of active conversations.
+Consider data structures like arrays, linked lists, hash tables, and trees for storing and accessing conversation metadata.
+Discuss strategies for sorting, filtering, and indexing conversations to improve user experience.
+
+First an overview of the data structures:
+
+Array:
+
+Time complexity: Access: O(1), search: O(n)
+Advantages: Simple, Fast access
+Disadvantages: Costly insert/delete (O(n))
+
+Linked List: 
+
+Time complexity: Access: O(n), search: O(n)
+Advantages: Efficient inserts/deletes O(1)
+Disadvantages: Poor cache locality, O(n) search -- this actually would affect the scalability of the app and would most likely impact performance
+
+
+Hash Table: 
+
+Time complexity: Access/Search: O(1) 
+Advantages: Fast lookups, efficient indexing. This is an amazing advantage for this particular situation.
+Disadvantages: High memory usage, no sorting -- These advantages could prove to be too much of a sacrifce when it comes to scalability. Once the app gets bigger this could prove detrimental to the performance.
+
+Tree/Specifically(Binary Search Tree)BTS:
+
+Time complexity: Access/Search: O(log n)
+Advantages: Balanced lookups, supports sorting
+Disadvantages: Needs balancing -- This seems to add a layer of complexity, but that does not seem to be detrimental for this app.
+
+When it comes to displaying the list of converastions the most common and seemingly user friendly approach would most likely be an array that is sorted by timestamp. 
+Another option would be a Tree because it is automatically ordered based on timestamp.
+
+For real time updates a hash table and maybe a linked list could provide efficient lookups and ordered  insert/delete operations.
+
+For sorting and filtering my recommendation would be to use a hash table for a fast search using the key.
+
+When it comes to indexing trees standout as a great way to efficiently index large datasets. This is important to keep in mind because one of the details in the case study is the impact on performance as the size of the apps load increases.
+
+I personally feel that my recommendation for this app to improve user experience and overall performance based on the requirements are to use a hash table and or a linked list. The advantages for this are the fast look ups and reordering.
+Another option that I feel is viable is to use a Tree due to its ability to sort and index the data.
+
+
+
+ 
